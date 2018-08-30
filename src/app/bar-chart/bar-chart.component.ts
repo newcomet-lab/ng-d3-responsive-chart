@@ -18,9 +18,7 @@ export class BarChartComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.data);
-  }
+  ngOnInit() { }
 
   ngOnChanges(): void {
     if (!this.data) { return; }
@@ -78,6 +76,10 @@ export class BarChartComponent implements OnInit, OnChanges {
       .attr('y', d => y(d.frequency))
       .attr('width', x.bandwidth())
       .attr('height', d => contentHeight - y(d.frequency));
+  }
+
+  onResize() {
+    this.createChart();
   }
 
 }
