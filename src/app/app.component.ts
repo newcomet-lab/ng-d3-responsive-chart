@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Data } from './models/data.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'angular-d3-responsive-chart';
+  data: Observable<Data>;
+
+  constructor(private http: HttpClient) {
+   this.data = this.http.get<Data>('./assets/data.json');
+ }
 }
