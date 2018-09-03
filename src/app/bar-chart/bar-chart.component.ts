@@ -1,11 +1,13 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnChanges, ViewEncapsulation } from '@angular/core';
 import { Data } from '../models/data.model';
 import * as d3 from 'd3';
 
 @Component({
   selector: 'app-bar-chart',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.less']
+  styleUrls: ['./bar-chart.component.less'
+]
 })
 export class BarChartComponent implements OnInit, OnChanges {
   @ViewChild('barChart')
@@ -27,10 +29,10 @@ export class BarChartComponent implements OnInit, OnChanges {
   }
 
   private createChart(): void {
-    d3.select('svg').remove();
-
     const element = this.chartContainer.nativeElement;
     const data = this.data;
+
+    d3.select(element).select('svg').remove();
 
     const svg = d3.select(element).append('svg')
       .attr('width', element.offsetWidth)
